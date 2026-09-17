@@ -4,7 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Gestor de Compras</title>
+  <title>InsumoFlow | Gestão de Compras</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
 
@@ -13,73 +17,121 @@
 
 <body>
 
+<div class="app">
+
   <!-- SIDEBAR -->
   <aside class="sidebar">
 
-    <div class="logo">
-      <div class="logo-icon">🛒</div>
+    <div class="brand">
+      <div class="brand-mark">IF</div>
+
       <div>
-        <strong>Gestor</strong>
-        <span>de Compras</span>
+        <strong>InsumoFlow</strong>
+        <span>Gestão empresarial</span>
       </div>
     </div>
 
-    <nav>
-      <button class="nav-item active" onclick="mostrarPagina('inicio', this)">
-        🏠 <span>Início</span>
-      </button>
+    <div class="company-card">
+      <span class="company-label">EMPRESA ATIVA</span>
 
-      <button class="nav-item" onclick="mostrarPagina('gastos', this)">
-        💳 <span>Gastos</span>
-      </button>
+      <div class="company-info">
+        <div class="company-avatar">LB</div>
 
-      <button class="nav-item" onclick="mostrarPagina('categorias', this)">
-        🏷️ <span>Categorias</span>
-      </button>
-
-      <button class="nav-item" onclick="mostrarPagina('notas', this)">
-        🧾 <span>Notas fiscais</span>
-      </button>
-
-      <button class="nav-item" onclick="mostrarPagina('relatorios', this)">
-        📊 <span>Relatórios</span>
-      </button>
-    </nav>
-
-    <div class="sidebar-bottom">
-      <div class="empresa-mini">
-        <div class="empresa-avatar">L</div>
         <div>
-          <strong>Lanchonete do João</strong>
-          <small>Lanchonete</small>
+          <strong>Lanches Brasil</strong>
+          <span>Lanchonete</span>
         </div>
       </div>
+    </div>
+
+    <p class="menu-label">GESTÃO</p>
+
+    <nav>
+
+      <button class="nav-item active" data-page="dashboard">
+        <span class="nav-icon">⌂</span>
+        Dashboard
+      </button>
+
+      <button class="nav-item" data-page="lancamentos">
+        <span class="nav-icon">↗</span>
+        Lançamentos
+      </button>
+
+      <button class="nav-item" data-page="categorias">
+        <span class="nav-icon">▦</span>
+        Categorias
+      </button>
+
+      <button class="nav-item" data-page="fornecedores">
+        <span class="nav-icon">▣</span>
+        Fornecedores
+      </button>
+
+      <button class="nav-item" data-page="notas">
+        <span class="nav-icon">▤</span>
+        Notas fiscais
+
+        <span class="badge">12</span>
+      </button>
+
+      <p class="menu-label second">ANÁLISES</p>
+
+      <button class="nav-item" data-page="relatorios">
+        <span class="nav-icon">⌁</span>
+        Relatórios
+      </button>
+
+    </nav>
+
+    <div class="sidebar-footer">
+
+      <div class="user-card">
+        <div class="user-avatar">JS</div>
+
+        <div>
+          <strong>João Silva</strong>
+          <span>Administrador</span>
+        </div>
+
+        <button>⋮</button>
+      </div>
+
     </div>
 
   </aside>
 
 
-  <!-- CONTEÚDO -->
+  <!-- MAIN -->
   <main class="main">
 
-    <!-- HEADER -->
-    <header>
+    <!-- TOPBAR -->
+    <header class="topbar">
 
       <div>
-        <p class="hello">Olá, João 👋</p>
-        <h1>Visão geral do negócio</h1>
+        <button id="menuButton" class="menu-button">☰</button>
+
+        <div class="page-title">
+          <span>VISÃO GERAL</span>
+          <h1>Dashboard</h1>
+        </div>
       </div>
 
-      <div class="header-actions">
+      <div class="top-actions">
 
-        <select id="mes">
-          <option>Setembro 2026</option>
-          <option>Agosto 2026</option>
-          <option>Julho 2026</option>
+        <button class="icon-button">
+          ◌
+        </button>
+
+        <select id="periodSelect">
+          <option value="setembro">Setembro 2026</option>
+          <option value="agosto">Agosto 2026</option>
+          <option value="julho">Julho 2026</option>
         </select>
 
-        <button class="btn-primary" onclick="abrirModal()">
-          + Registrar gasto
+        <button class="primary-button" id="openExpense">
+          <span>＋</span>
+          Novo lançamento
         </button>
 
       </div>
@@ -87,650 +139,920 @@
     </header>
 
 
-    <!-- INÍCIO -->
-    <section id="inicio" class="page active-page">
+    <!-- DASHBOARD -->
+    <section class="page active" id="dashboard">
 
-      <!-- RESUMO -->
-      <div class="cards">
+      <div class="welcome">
 
-        <div class="card">
-          <div class="card-icon green">💰</div>
-
-          <div>
-            <span>Total gasto no mês</span>
-            <h2 id="totalMes">R$ 8.450,00</h2>
-            <small class="up">↑ 12% comparado ao mês passado</small>
-          </div>
+        <div>
+          <h2>Visão financeira</h2>
+          <p>Acompanhe os custos e compras da sua empresa em tempo real.</p>
         </div>
 
-
-        <div class="card">
-          <div class="card-icon blue">📅</div>
-
-          <div>
-            <span>Média diária</span>
-            <h2>R$ 281,67</h2>
-            <small>30 dias analisados</small>
-          </div>
-        </div>
-
-
-        <div class="card">
-          <div class="card-icon orange">🔥</div>
-
-          <div>
-            <span>Maior categoria</span>
-            <h2>Carne</h2>
-            <small>R$ 2.780,00 no mês</small>
-          </div>
-        </div>
-
-
-        <div class="card">
-          <div class="card-icon purple">🧾</div>
-
-          <div>
-            <span>Notas importadas</span>
-            <h2>18</h2>
-            <small>Este mês</small>
-          </div>
+        <div class="status">
+          <span></span>
+          Dados atualizados
         </div>
 
       </div>
 
 
-      <!-- GRÁFICOS -->
-      <div class="dashboard-grid">
+      <!-- KPI -->
+      <div class="kpi-grid">
 
-        <div class="panel chart-panel">
+        <article class="kpi-card">
 
-          <div class="panel-title">
-            <div>
-              <h3>Evolução dos gastos</h3>
-              <p>Quanto sua empresa gastou durante o mês</p>
-            </div>
+          <div class="kpi-top">
+            <span>GASTOS NO MÊS</span>
+            <div class="kpi-icon">R$</div>
           </div>
 
-          <canvas id="lineChart"></canvas>
+          <h2 id="monthlyTotal">R$ 8.450,00</h2>
 
-        </div>
-
-
-        <div class="panel">
-
-          <div class="panel-title">
-            <div>
-              <h3>Gastos por categoria</h3>
-              <p>Distribuição deste mês</p>
-            </div>
+          <div class="variation positive">
+            ↑ 4,8%
+            <span>vs. mês anterior</span>
           </div>
 
-          <canvas id="categoryChart"></canvas>
+        </article>
 
-        </div>
+
+        <article class="kpi-card">
+
+          <div class="kpi-top">
+            <span>MÉDIA DIÁRIA</span>
+            <div class="kpi-icon">↗</div>
+          </div>
+
+          <h2>R$ 281,67</h2>
+
+          <div class="variation neutral">
+            30 dias
+            <span>analisados</span>
+          </div>
+
+        </article>
+
+
+        <article class="kpi-card">
+
+          <div class="kpi-top">
+            <span>MAIOR CUSTO</span>
+            <div class="kpi-icon">▦</div>
+          </div>
+
+          <h2>R$ 2.780,00</h2>
+
+          <div class="variation neutral">
+            Carnes
+            <span>32,9% do total</span>
+          </div>
+
+        </article>
+
+
+        <article class="kpi-card">
+
+          <div class="kpi-top">
+            <span>FORNECEDORES</span>
+            <div class="kpi-icon">▣</div>
+          </div>
+
+          <h2>14</h2>
+
+          <div class="variation positive">
+            +2
+            <span>este mês</span>
+          </div>
+
+        </article>
 
       </div>
 
 
-      <!-- CATEGORIAS -->
-      <div class="panel category-panel">
+      <!-- CHARTS -->
+      <div class="analytics-grid">
 
-        <div class="panel-title">
+        <article class="panel large">
 
-          <div>
-            <h3>Suas categorias</h3>
-            <p>Veja onde seu negócio está gastando mais</p>
+          <div class="panel-header">
+
+            <div>
+              <span class="eyebrow">ANÁLISE DE CUSTOS</span>
+              <h3>Evolução mensal</h3>
+            </div>
+
+            <button class="more-button">•••</button>
+
           </div>
 
-          <button class="btn-light" onclick="mostrarPagina('categorias')">
-            Ver todas
+          <div class="chart-summary">
+
+            <div>
+              <span>Total acumulado</span>
+              <strong>R$ 8.450,00</strong>
+            </div>
+
+            <div class="legend">
+              <span class="legend-dot"></span>
+              Gastos
+            </div>
+
+          </div>
+
+          <div class="chart-container">
+            <canvas id="expenseChart"></canvas>
+          </div>
+
+        </article>
+
+
+        <article class="panel">
+
+          <div class="panel-header">
+
+            <div>
+              <span class="eyebrow">DISTRIBUIÇÃO</span>
+              <h3>Por categoria</h3>
+            </div>
+
+            <button class="more-button">•••</button>
+
+          </div>
+
+          <div class="donut-wrapper">
+
+            <div class="donut-container">
+              <canvas id="categoryChart"></canvas>
+
+              <div class="donut-center">
+                <span>Total</span>
+                <strong>R$ 8,4 mil</strong>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="category-legend">
+
+            <div>
+              <span class="dot dot1"></span>
+              Carnes
+              <strong>32,9%</strong>
+            </div>
+
+            <div>
+              <span class="dot dot2"></span>
+              Frios
+              <strong>18,1%</strong>
+            </div>
+
+            <div>
+              <span class="dot dot3"></span>
+              Pães
+              <strong>13,3%</strong>
+            </div>
+
+            <div>
+              <span class="dot dot4"></span>
+              Outros
+              <strong>35,7%</strong>
+            </div>
+
+          </div>
+
+        </article>
+
+      </div>
+
+
+      <!-- PURCHASES -->
+      <article class="panel transactions">
+
+        <div class="panel-header">
+
+          <div>
+            <span class="eyebrow">MOVIMENTAÇÃO</span>
+            <h3>Últimos lançamentos</h3>
+          </div>
+
+          <button class="secondary-button" data-go="lancamentos">
+            Ver todos
           </button>
 
         </div>
 
+        <div class="table-wrapper">
 
-        <div class="category-list">
+          <table>
 
-          <div class="category-row">
-            <div class="category-info">
-              <div class="category-icon red">🥩</div>
-              <div>
-                <strong>Carne</strong>
-                <span>32,9% dos gastos</span>
-              </div>
-            </div>
+            <thead>
+            <tr>
+              <th>DATA</th>
+              <th>DESCRIÇÃO</th>
+              <th>FORNECEDOR</th>
+              <th>CATEGORIA</th>
+              <th>ORIGEM</th>
+              <th>VALOR</th>
+            </tr>
+            </thead>
 
-            <strong>R$ 2.780,00</strong>
-          </div>
+            <tbody id="recentTransactions">
 
+            <tr>
+              <td>16 Set</td>
 
-          <div class="category-row">
-            <div class="category-info">
-              <div class="category-icon yellow">🧀</div>
-              <div>
-                <strong>Queijo e frios</strong>
-                <span>18,1% dos gastos</span>
-              </div>
-            </div>
+              <td>
+                <div class="transaction-name">
+                  <div class="transaction-icon">CB</div>
+                  <div>
+                    <strong>Compra semanal</strong>
+                    <span>#CMP-00281</span>
+                  </div>
+                </div>
+              </td>
 
-            <strong>R$ 1.530,00</strong>
-          </div>
+              <td>Casa das Carnes</td>
 
+              <td>
+                <span class="category-tag">Carnes</span>
+              </td>
 
-          <div class="category-row">
-            <div class="category-info">
-              <div class="category-icon orange-bg">🥖</div>
-              <div>
-                <strong>Pães</strong>
-                <span>13,3% dos gastos</span>
-              </div>
-            </div>
+              <td>
+                <span class="source-tag automatic">NF-e</span>
+              </td>
 
-            <strong>R$ 1.120,00</strong>
-          </div>
-
-
-          <div class="category-row">
-            <div class="category-info">
-              <div class="category-icon green-bg">🥬</div>
-              <div>
-                <strong>Saladas e hortifruti</strong>
-                <span>7,3% dos gastos</span>
-              </div>
-            </div>
-
-            <strong>R$ 620,00</strong>
-          </div>
+              <td class="value">R$ 1.240,00</td>
+            </tr>
 
 
-          <div class="category-row">
-            <div class="category-info">
-              <div class="category-icon blue-bg">🥤</div>
-              <div>
-                <strong>Bebidas</strong>
-                <span>11,1% dos gastos</span>
-              </div>
-            </div>
+            <tr>
+              <td>15 Set</td>
 
-            <strong>R$ 940,00</strong>
-          </div>
+              <td>
+                <div class="transaction-name">
+                  <div class="transaction-icon">PA</div>
+                  <div>
+                    <strong>Produtos de padaria</strong>
+                    <span>#CMP-00280</span>
+                  </div>
+                </div>
+              </td>
+
+              <td>Panificadora Central</td>
+
+              <td>
+                <span class="category-tag">Pães</span>
+              </td>
+
+              <td>
+                <span class="source-tag manual">Manual</span>
+              </td>
+
+              <td class="value">R$ 380,00</td>
+            </tr>
+
+
+            <tr>
+              <td>14 Set</td>
+
+              <td>
+                <div class="transaction-name">
+                  <div class="transaction-icon">HF</div>
+                  <div>
+                    <strong>Hortifruti</strong>
+                    <span>#CMP-00279</span>
+                  </div>
+                </div>
+              </td>
+
+              <td>Hortifruti Ideal</td>
+
+              <td>
+                <span class="category-tag">Hortifruti</span>
+              </td>
+
+              <td>
+                <span class="source-tag automatic">NF-e</span>
+              </td>
+
+              <td class="value">R$ 465,90</td>
+            </tr>
+
+
+            <tr>
+              <td>13 Set</td>
+
+              <td>
+                <div class="transaction-name">
+                  <div class="transaction-icon">BE</div>
+                  <div>
+                    <strong>Reposição de bebidas</strong>
+                    <span>#CMP-00278</span>
+                  </div>
+                </div>
+              </td>
+
+              <td>Distribuidora Brasil</td>
+
+              <td>
+                <span class="category-tag">Bebidas</span>
+              </td>
+
+              <td>
+                <span class="source-tag automatic">NF-e</span>
+              </td>
+
+              <td class="value">R$ 890,00</td>
+            </tr>
+
+            </tbody>
+
+          </table>
 
         </div>
 
-      </div>
+      </article>
 
 
-      <!-- NOTA FISCAL -->
-      <div class="invoice-banner">
+      <!-- INSIGHTS -->
+      <div class="bottom-grid">
 
-        <div class="invoice-icon">🧾</div>
+        <article class="panel">
 
-        <div class="invoice-text">
-          <h3>Não quer lançar produto por produto?</h3>
-          <p>
-            Importe sua nota fiscal e deixe o sistema organizar
-            seus gastos automaticamente.
-          </p>
-        </div>
+          <div class="panel-header">
+            <div>
+              <span class="eyebrow">INDICADORES</span>
+              <h3>Principais categorias</h3>
+            </div>
+          </div>
 
-        <button onclick="mostrarPagina('notas')">
-          Importar nota fiscal
-        </button>
+          <div class="ranking">
+
+            <div class="ranking-row">
+              <span>01</span>
+
+              <div class="ranking-data">
+                <div>
+                  <strong>Carnes</strong>
+                  <span>R$ 2.780,00</span>
+                </div>
+
+                <div class="progress">
+                  <div style="width: 83%"></div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="ranking-row">
+              <span>02</span>
+
+              <div class="ranking-data">
+                <div>
+                  <strong>Queijos e frios</strong>
+                  <span>R$ 1.530,00</span>
+                </div>
+
+                <div class="progress">
+                  <div style="width: 56%"></div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="ranking-row">
+              <span>03</span>
+
+              <div class="ranking-data">
+                <div>
+                  <strong>Pães</strong>
+                  <span>R$ 1.120,00</span>
+                </div>
+
+                <div class="progress">
+                  <div style="width: 41%"></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <article class="import-card">
+
+          <div class="import-content">
+
+            <div class="document-icon">NF</div>
+
+            <div>
+              <span>AUTOMAÇÃO</span>
+              <h3>Importe suas notas fiscais</h3>
+
+              <p>
+                Reduza lançamentos manuais. Envie a nota e deixe
+                o sistema organizar os itens e categorias.
+              </p>
+            </div>
+
+          </div>
+
+          <button data-go="notas">
+            Importar documento →
+          </button>
+
+        </article>
 
       </div>
 
     </section>
 
 
-    <!-- GASTOS -->
-    <section id="gastos" class="page">
+    <!-- LANÇAMENTOS -->
+    <section class="page" id="lancamentos">
 
-      <div class="section-header">
+      <div class="section-heading">
+
         <div>
-          <h2>Gastos</h2>
-          <p>Todos os gastos registrados no seu negócio.</p>
+          <span>GESTÃO FINANCEIRA</span>
+          <h2>Lançamentos</h2>
+          <p>Controle todas as compras e despesas operacionais.</p>
         </div>
 
-        <button class="btn-primary" onclick="abrirModal()">
-          + Novo gasto
+        <button class="primary-button open-expense">
+          ＋ Novo lançamento
         </button>
-      </div>
-
-
-      <div class="panel">
-
-        <table>
-
-          <thead>
-            <tr>
-              <th>Data</th>
-              <th>Categoria</th>
-              <th>Descrição</th>
-              <th>Valor</th>
-            </tr>
-          </thead>
-
-          <tbody id="tabelaGastos">
-
-            <tr>
-              <td>16/09/2026</td>
-              <td>🥩 Carne</td>
-              <td>Compra no mercado</td>
-              <td><strong>R$ 240,00</strong></td>
-            </tr>
-
-            <tr>
-              <td>16/09/2026</td>
-              <td>🥖 Pães</td>
-              <td>Pão de hambúrguer</td>
-              <td><strong>R$ 80,00</strong></td>
-            </tr>
-
-            <tr>
-              <td>15/09/2026</td>
-              <td>🧀 Queijo</td>
-              <td>Mussarela</td>
-              <td><strong>R$ 130,00</strong></td>
-            </tr>
-
-            <tr>
-              <td>15/09/2026</td>
-              <td>🥬 Salada</td>
-              <td>Tomate e alface</td>
-              <td><strong>R$ 45,00</strong></td>
-            </tr>
-
-          </tbody>
-
-        </table>
 
       </div>
+
+
+      <article class="panel">
+
+        <div class="filters">
+
+          <div class="search-box">
+            <span>⌕</span>
+            <input type="text" id="transactionSearch" placeholder="Buscar lançamento...">
+          </div>
+
+          <select>
+            <option>Todas as categorias</option>
+            <option>Carnes</option>
+            <option>Pães</option>
+            <option>Bebidas</option>
+            <option>Hortifruti</option>
+          </select>
+
+          <select>
+            <option>Todos os fornecedores</option>
+            <option>Casa das Carnes</option>
+            <option>Panificadora Central</option>
+            <option>Distribuidora Brasil</option>
+          </select>
+
+        </div>
+
+        <div class="table-wrapper">
+
+          <table>
+
+            <thead>
+            <tr>
+              <th>DATA</th>
+              <th>DESCRIÇÃO</th>
+              <th>FORNECEDOR</th>
+              <th>CATEGORIA</th>
+              <th>VALOR</th>
+            </tr>
+            </thead>
+
+            <tbody id="allTransactions"></tbody>
+
+          </table>
+
+        </div>
+
+      </article>
 
     </section>
 
 
     <!-- CATEGORIAS -->
-    <section id="categorias" class="page">
+    <section class="page" id="categorias">
 
-      <div class="section-header">
+      <div class="section-heading">
 
         <div>
-          <h2>Categorias de gastos</h2>
-          <p>Crie categorias específicas para o seu negócio.</p>
+          <span>ORGANIZAÇÃO</span>
+          <h2>Categorias</h2>
+          <p>Personalize os grupos de custos conforme o seu negócio.</p>
         </div>
 
-        <button class="btn-primary" onclick="novaCategoria()">
-          + Nova categoria
+        <button class="primary-button" id="newCategory">
+          ＋ Nova categoria
         </button>
 
       </div>
 
 
-      <div id="categoryCards" class="category-cards">
+      <div class="business-type">
 
-        <div class="category-box">
-          <div class="big-icon">🥩</div>
-          <h3>Carne</h3>
-          <p>R$ 2.780,00</p>
+        <div>
+          <span>TIPO DE NEGÓCIO</span>
+          <strong>Lanchonete</strong>
         </div>
 
-        <div class="category-box">
-          <div class="big-icon">🥖</div>
-          <h3>Pães</h3>
-          <p>R$ 1.120,00</p>
-        </div>
-
-        <div class="category-box">
-          <div class="big-icon">🧀</div>
-          <h3>Queijo</h3>
-          <p>R$ 1.530,00</p>
-        </div>
-
-        <div class="category-box">
-          <div class="big-icon">🥬</div>
-          <h3>Salada</h3>
-          <p>R$ 620,00</p>
-        </div>
-
-        <div class="category-box">
-          <div class="big-icon">🥤</div>
-          <h3>Bebidas</h3>
-          <p>R$ 940,00</p>
-        </div>
-
-        <div class="category-box">
-          <div class="big-icon">📦</div>
-          <h3>Embalagens</h3>
-          <p>R$ 710,00</p>
-        </div>
+        <p>
+          As categorias abaixo foram configuradas especificamente
+          para a operação da sua empresa.
+        </p>
 
       </div>
+
+
+      <div class="category-grid" id="categoryGrid"></div>
+
+    </section>
+
+
+    <!-- FORNECEDORES -->
+    <section class="page" id="fornecedores">
+
+      <div class="section-heading">
+
+        <div>
+          <span>COMPRAS</span>
+          <h2>Fornecedores</h2>
+          <p>Acompanhe de quem sua empresa está comprando.</p>
+        </div>
+
+        <button class="primary-button" id="newSupplier">
+          ＋ Novo fornecedor
+        </button>
+
+      </div>
+
+
+      <div class="supplier-grid" id="supplierGrid"></div>
 
     </section>
 
 
     <!-- NOTAS -->
-    <section id="notas" class="page">
+    <section class="page" id="notas">
 
-      <div class="section-header">
-        <div>
-          <h2>Importar nota fiscal</h2>
-          <p>Envie sua nota para organizar os gastos automaticamente.</p>
-        </div>
-      </div>
-
-
-      <div class="upload-box">
-
-        <div class="upload-icon">🧾</div>
-
-        <h2>Envie sua nota fiscal</h2>
-
-        <p>
-          O processamento em Python poderá identificar os produtos,
-          valores e categorias.
-        </p>
-
-        <label class="upload-button">
-          Escolher arquivo
-          <input type="file" hidden>
-        </label>
-
-        <span>Imagem, PDF ou XML</span>
-
-      </div>
-
-
-      <div class="python-flow">
+      <div class="section-heading">
 
         <div>
-          <span>1</span>
-          <strong>Nota fiscal</strong>
-          <small>Cliente envia o arquivo</small>
-        </div>
+          <span>AUTOMAÇÃO</span>
+          <h2>Notas fiscais</h2>
 
-        <b>→</b>
-
-        <div>
-          <span>2</span>
-          <strong>Python</strong>
-          <small>Identifica os produtos</small>
-        </div>
-
-        <b>→</b>
-
-        <div>
-          <span>3</span>
-          <strong>Categorias</strong>
-          <small>Carne, pão, bebidas...</small>
-        </div>
-
-        <b>→</b>
-
-        <div>
-          <span>4</span>
-          <strong>Dashboard</strong>
-          <small>Valores aparecem automaticamente</small>
+          <p>
+            Transforme documentos fiscais em lançamentos organizados.
+          </p>
         </div>
 
       </div>
+
+
+      <div class="invoice-layout">
+
+        <article class="upload-panel">
+
+          <div class="upload-symbol">↑</div>
+
+          <span>IMPORTAÇÃO INTELIGENTE</span>
+
+          <h2>Envie uma nota fiscal</h2>
+
+          <p>
+            Faça upload de XML, PDF ou imagem. A futura integração
+            Python poderá identificar produtos, valores e categorias.
+          </p>
+
+          <label class="file-button">
+            Selecionar documento
+            <input type="file" id="invoiceFile" hidden>
+          </label>
+
+          <small>XML, PDF, PNG ou JPG</small>
+
+        </article>
+
+
+        <article class="processing-panel">
+
+          <span class="eyebrow">COMO FUNCIONA</span>
+
+          <h3>Processamento automático</h3>
+
+          <div class="process">
+
+            <div>
+              <span>01</span>
+              <div>
+                <strong>Documento enviado</strong>
+                <p>A nota fiscal chega ao servidor.</p>
+              </div>
+            </div>
+
+            <div class="process-line"></div>
+
+            <div>
+              <span>02</span>
+              <div>
+                <strong>Processamento Python</strong>
+                <p>Produtos e valores são identificados.</p>
+              </div>
+            </div>
+
+            <div class="process-line"></div>
+
+            <div>
+              <span>03</span>
+              <div>
+                <strong>Classificação</strong>
+                <p>Cada item é relacionado à sua categoria.</p>
+              </div>
+            </div>
+
+            <div class="process-line"></div>
+
+            <div>
+              <span>04</span>
+              <div>
+                <strong>Lançamento concluído</strong>
+                <p>Os valores aparecem no dashboard.</p>
+              </div>
+            </div>
+
+          </div>
+
+        </article>
+
+      </div>
+
+
+      <article class="panel invoice-history">
+
+        <div class="panel-header">
+
+          <div>
+            <span class="eyebrow">HISTÓRICO</span>
+            <h3>Documentos recentes</h3>
+          </div>
+
+        </div>
+
+        <table>
+
+          <thead>
+          <tr>
+            <th>DOCUMENTO</th>
+            <th>FORNECEDOR</th>
+            <th>DATA</th>
+            <th>ITENS</th>
+            <th>VALOR</th>
+            <th>STATUS</th>
+          </tr>
+          </thead>
+
+          <tbody>
+
+          <tr>
+            <td>NF-e 000281</td>
+            <td>Casa das Carnes</td>
+            <td>16/09/2026</td>
+            <td>12</td>
+            <td>R$ 1.240,00</td>
+            <td><span class="success-status">Processada</span></td>
+          </tr>
+
+          <tr>
+            <td>NF-e 000279</td>
+            <td>Hortifruti Ideal</td>
+            <td>14/09/2026</td>
+            <td>18</td>
+            <td>R$ 465,90</td>
+            <td><span class="success-status">Processada</span></td>
+          </tr>
+
+          </tbody>
+
+        </table>
+
+      </article>
 
     </section>
 
 
     <!-- RELATÓRIOS -->
-    <section id="relatorios" class="page">
+    <section class="page" id="relatorios">
 
-      <div class="section-header">
+      <div class="section-heading">
+
         <div>
-          <h2>Relatório mensal</h2>
-          <p>Acompanhe a evolução dos custos do seu negócio.</p>
+          <span>INTELIGÊNCIA FINANCEIRA</span>
+          <h2>Relatórios</h2>
+          <p>Compare custos e acompanhe a evolução do negócio.</p>
         </div>
+
+        <button class="secondary-button">
+          Exportar relatório
+        </button>
+
       </div>
+
 
       <div class="report-grid">
 
-        <div class="report-card">
-          <span>Setembro</span>
-          <strong>R$ 8.450</strong>
-        </div>
+        <article>
+          <span>SETEMBRO 2026</span>
+          <strong>R$ 8.450,00</strong>
+          <small class="increase">↑ 4,8%</small>
+        </article>
 
-        <div class="report-card">
-          <span>Agosto</span>
-          <strong>R$ 7.540</strong>
-        </div>
+        <article>
+          <span>AGOSTO 2026</span>
+          <strong>R$ 8.063,00</strong>
+          <small>Referência anterior</small>
+        </article>
 
-        <div class="report-card">
-          <span>Julho</span>
-          <strong>R$ 7.180</strong>
-        </div>
+        <article>
+          <span>JULHO 2026</span>
+          <strong>R$ 7.480,00</strong>
+          <small>Histórico</small>
+        </article>
 
       </div>
+
+
+      <article class="panel report-chart">
+
+        <div class="panel-header">
+
+          <div>
+            <span class="eyebrow">COMPARATIVO</span>
+            <h3>Evolução dos últimos meses</h3>
+          </div>
+
+        </div>
+
+        <canvas id="monthlyChart"></canvas>
+
+      </article>
 
     </section>
 
   </main>
 
+</div>
 
-  <!-- MODAL -->
-  <div id="modal" class="modal">
 
-    <div class="modal-content">
+<!-- MODAL LANÇAMENTO -->
+<div class="modal" id="expenseModal">
 
-      <div class="modal-header">
-        <div>
-          <h2>Registrar gasto</h2>
-          <p>Adicione uma nova compra.</p>
+  <div class="modal-card">
+
+    <div class="modal-header">
+
+      <div>
+        <span>NOVO REGISTRO</span>
+        <h2>Adicionar lançamento</h2>
+      </div>
+
+      <button id="closeExpense">×</button>
+
+    </div>
+
+
+    <form id="expenseForm">
+
+      <div class="form-row">
+
+        <div class="field">
+          <label>Data</label>
+          <input type="date" id="expenseDate" required>
         </div>
 
-        <button onclick="fecharModal()">×</button>
+        <div class="field">
+          <label>Valor</label>
+          <input type="number" id="expenseValue" step="0.01" placeholder="0,00" required>
+        </div>
+
       </div>
 
 
-      <label>Data</label>
-      <input id="dataGasto" type="date">
+      <div class="field">
+
+        <label>Categoria</label>
+
+        <select id="expenseCategory" required>
+          <option value="">Selecione</option>
+          <option>Carnes</option>
+          <option>Pães</option>
+          <option>Queijos e frios</option>
+          <option>Hortifruti</option>
+          <option>Bebidas</option>
+          <option>Embalagens</option>
+        </select>
+
+      </div>
 
 
-      <label>Categoria</label>
+      <div class="field">
 
-      <select id="categoriaGasto">
-        <option>🥩 Carne</option>
-        <option>🥖 Pães</option>
-        <option>🧀 Queijo</option>
-        <option>🥬 Salada</option>
-        <option>🥤 Bebidas</option>
-        <option>📦 Embalagens</option>
-      </select>
+        <label>Fornecedor</label>
 
+        <input
+          type="text"
+          id="expenseSupplier"
+          placeholder="Nome do fornecedor"
+        >
 
-      <label>Valor</label>
-      <input id="valorGasto" type="number" placeholder="R$ 0,00">
+      </div>
 
 
-      <label>Descrição</label>
-      <input id="descricaoGasto" type="text" placeholder="Ex.: Compra no mercado">
+      <div class="field">
+
+        <label>Descrição</label>
+
+        <input
+          type="text"
+          id="expenseDescription"
+          placeholder="Ex.: Compra semanal de insumos"
+        >
+
+      </div>
 
 
-      <button class="save-button" onclick="salvarGasto()">
-        Salvar gasto
+      <div class="modal-actions">
+
+        <button type="button" class="cancel-button" id="cancelExpense">
+          Cancelar
+        </button>
+
+        <button type="submit" class="primary-button">
+          Salvar lançamento
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<!-- MODAL CATEGORIA -->
+<div class="modal" id="categoryModal">
+
+  <div class="modal-card small">
+
+    <div class="modal-header">
+
+      <div>
+        <span>ORGANIZAÇÃO</span>
+        <h2>Nova categoria</h2>
+      </div>
+
+      <button class="close-category">×</button>
+
+    </div>
+
+    <div class="field">
+      <label>Nome da categoria</label>
+      <input id="categoryName" placeholder="Ex.: Molhos">
+    </div>
+
+    <div class="modal-actions">
+
+      <button class="cancel-button close-category">
+        Cancelar
+      </button>
+
+      <button class="primary-button" id="saveCategory">
+        Criar categoria
       </button>
 
     </div>
 
   </div>
 
-
-<script>
-
-const modal = document.getElementById("modal");
-
-function abrirModal(){
-  modal.classList.add("show");
-}
-
-function fecharModal(){
-  modal.classList.remove("show");
-}
-
-function mostrarPagina(id, botao){
-
-  document.querySelectorAll(".page").forEach(page => {
-    page.classList.remove("active-page");
-  });
-
-  document.getElementById(id).classList.add("active-page");
-
-  document.querySelectorAll(".nav-item").forEach(item => {
-    item.classList.remove("active");
-  });
-
-  if(botao){
-    botao.classList.add("active");
-  }
-}
+</div>
 
 
-function salvarGasto(){
-
-  const valor = document.getElementById("valorGasto").value;
-  const categoria = document.getElementById("categoriaGasto").value;
-  const descricao = document.getElementById("descricaoGasto").value;
-  const data = document.getElementById("dataGasto").value;
-
-  if(!valor){
-    alert("Digite o valor do gasto.");
-    return;
-  }
-
-  const tabela = document.getElementById("tabelaGastos");
-
-  const linha = document.createElement("tr");
-
-  let dataFormatada = "Hoje";
-
-  if(data){
-    const partes = data.split("-");
-    dataFormatada = `${partes[2]}/${partes[1]}/${partes[0]}`;
-  }
-
-  linha.innerHTML = `
-    <td>${dataFormatada}</td>
-    <td>${categoria}</td>
-    <td>${descricao || "Sem descrição"}</td>
-    <td><strong>R$ ${Number(valor).toLocaleString("pt-BR", {
-      minimumFractionDigits:2
-    })}</strong></td>
-  `;
-
-  tabela.prepend(linha);
-
-  fecharModal();
-
-  alert("Gasto registrado!");
-
-}
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <strong>Concluído</strong>
+  <span>Operação realizada com sucesso.</span>
+</div>
 
 
-function novaCategoria(){
-
-  const nome = prompt("Digite o nome da nova categoria:");
-
-  if(!nome) return;
-
-  const container = document.getElementById("categoryCards");
-
-  const box = document.createElement("div");
-
-  box.className = "category-box";
-
-  box.innerHTML = `
-    <div class="big-icon">🏷️</div>
-    <h3>${nome}</h3>
-    <p>R$ 0,00</p>
-  `;
-
-  container.appendChild(box);
-
-}
-
-
-/* GRÁFICO LINHA */
-
-new Chart(
-  document.getElementById("lineChart"),
-  {
-    type: "line",
-
-    data: {
-      labels: [
-        "01/09",
-        "05/09",
-        "10/09",
-        "15/09",
-        "20/09",
-        "25/09",
-        "30/09"
-      ],
-
-      datasets: [{
-        label: "Gastos",
-        data: [180, 310, 250, 565, 290, 410, 350],
-        tension: .4,
-        fill: true
-      }]
-    },
-
-    options: {
-      responsive: true,
-
-      plugins:{
-        legend:{
-          display:false
-        }
-      }
-    }
-  }
-);
-
-
-/* GRÁFICO CATEGORIAS */
-
-new Chart(
-  document.getElementById("categoryChart"),
-  {
-    type: "doughnut",
-
-    data: {
-
-      labels:[
-        "Carne",
-        "Queijo",
-        "Pães",
-        "Bebidas",
-        "Salada",
-        "Outros"
-      ],
-
-      datasets:[{
-        data:[
-          2780,
-          1530,
-          1120,
-          940,
-          620,
-          1460
-        ]
-      }]
-    },
-
-    options:{
-      responsive:true,
-      cutout:"70%"
-    }
-  }
-);
-
-</script>
+<script src="app.js"></script>
 
 </body>
 </html>
